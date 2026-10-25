@@ -39,16 +39,7 @@ The current workflow searches for image files and selects files whose names cont
 - Summer depth: depth images, identified by _D- or depth in the filename.
 The notebook output reports 2,176 image files in total, including 1,088 summer images: 544 RGB images and 544 depth images.
 Dataset preparation
-The notebook copies images into a working directory with the following structure:
-split_dataset/
-├── summer_rgb/
-│   ├── train/
-│   ├── test/
-│   └── val/
-└── summer_d/
-    ├── train/
-    ├── test/
-    └── val/
+The notebook copies images into a working directory.
 The code currently uses a 75% training, 15% testing, and 10% validation split, with a fixed random seed for shuffling. RGB and depth images are split separately before matching, so the number of successfully matched pairs in each split can be much smaller than the number of images copied. For robust evaluation, matching pairs should ideally be established first and then split together to prevent data leakage and missing pairs.
 Image pairing and depth masking
 RGB and depth files are matched using the filename prefix before _Summer. The notebook converts RGB images to three-channel colour tensors and depth images to grayscale tensors. The depth map is normalised and multiplied by the RGB tensor to create a depth-gated RGB image.
